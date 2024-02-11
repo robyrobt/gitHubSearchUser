@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { axiosService } from './axios';
-import { isEmpty } from 'lodash';
 
 function Repository({ repository, userName }) {
-
   const [languages, setLanguages] = useState({});
 
   const fetchLanguages = async () => {
