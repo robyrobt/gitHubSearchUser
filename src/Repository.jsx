@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { axiosService } from './axios';
 
-function Repository({ repository, userName }) {
+function Repository({ repository, userName, errors }) {
   const [languages, setLanguages] = useState({});
 
   const fetchLanguages = async () => {
-    const response = await axiosService.get(`/repos/${userName}/${repository.name}/languages`);
-    setLanguages(response.data);
+    if (errors?.notFound) return;
+
+    try {
+      const response = await axiosService.get(`/repos/${userName}/${repository.name}/languages`);
+      setLanguages(response.data);
+    } catch (error) {
+      console.info(error);
+    }
   }
 
   useEffect(() => {

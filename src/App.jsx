@@ -24,39 +24,40 @@ function App() {
     const response = await axiosService.get(`/rate_limit`);
 
     if (response.data.rate.remaining <= 0) {
-      setErrors({ limit: `The maximum number of requests per hour is exceeded (60 per hour). Reset Time: ${moment.unix(response.data.rate.reset).local().format("MM/DD/YYYY HH:MM:SS")}` })
+      setErrors(prevError => ({ limit: `The maximum number of requests per hour is exceeded (60 per hour). Reset Time: ${moment.unix(response.data.rate.reset).local().format("MM/DD/YYYY HH:mm:ss")}` }))
       return;
     }
     setLimit(response.data);
   }
 
   const fetchUser = async () => {
-    if (!userName || errors.limit) {
-      setUser({});
+    if (!userName || errors?.limit) {
+      setUser(prevUser => { });
       return;
     }
 
     try {
       const response = await axiosService.get(`/users/${userName}`);
-      setUser(response.data);
+      setUser(prevUser => response.data);
+      setErrors(prevErrors => { });
     } catch (error) {
       if (error.response.status === 404) {
-        setErrors({ notFound: "User Not Found" });
+        setErrors(prevError => ({ notFound: "User Not Found" }));
         setUser({});
       }
     }
   }
 
   const fetchUserRepositories = async () => {
-    if (isEmpty(user)) return;
+    if (errors) return;
 
     try {
       const response = await axiosService.get(`/users/${userName}/repos`);
-      setUserRepositories(response.data);
+      setUserRepositories(prevUserRepo => response.data);
     } catch (error) {
       if (error.response.status === 404) {
-        setErrors({ notFound: "Not Found" });
-        setUserRepositories({});
+        setErrors(prevError => ({ notFound: "Not Found" }));
+        setUserRepositories(prevUserRepo => { });
       }
     }
   }
@@ -64,8 +65,11 @@ function App() {
   const handleClick = (e) => {
     e.preventDefault();
 
-    fetchUser();
-    fetchUserRepositories();
+    const waitUser = async () => { await fetchUser() };
+    const waitUserRepositories = async () => { await fetchUserRepositories(); }
+
+    waitUser();
+    waitUserRepositories();
   }
 
   const handlePressKey = (e) => {
@@ -127,6 +131,7 @@ function App() {
                   key={repo.id}
                   repository={repo}
                   userName={userName}
+                  errors={errors}
                 />
               )
             })}

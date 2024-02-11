@@ -2,6 +2,7 @@
   --button-background-color: #DCF2F1;
   --button-border-color: #0F1035;
   --layer-color: #7FC7D9;
+  --responsive-width: 768px;
 }
 
 #root {
@@ -53,7 +54,6 @@ section {
   flex-direction: column;
   align-items: center;
   margin-block: 1rem;
-  /* border: 1px solid var(--button-border-color); */
   padding: 1rem;
 }
 
@@ -123,6 +123,7 @@ section .repositories {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
 }
 
@@ -145,4 +146,26 @@ section .repositories {
 .error {
   font-size: 14px;
   color: red;
+}
+
+@media screen and (max-width: 448px)  {
+  .form-action .username-input {
+    width: 90%;
+  }
+
+  .form-action .search-button {
+     width: 90%;
+  }
+}
+
+@media screen  and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1100px) {
+  .container {
+    width: 60%;
+  }
 }
