@@ -1,0 +1,148 @@
+:root {
+  --button-background-color: #DCF2F1;
+  --button-border-color: #0F1035;
+  --layer-color: #7FC7D9;
+}
+
+#root {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app-container {
+  width: 100%;
+}
+
+.container {
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-action {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-action .username-input {
+  width: 50%;
+  margin-block: 0.25rem;
+  text-indent: 5px;
+}
+
+.form-action .search-button {
+  width: 30%;
+  margin-block: 0.25rem;
+  padding: 5px 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75rem;
+  background-color: var(--button-background-color);
+  border: 1px solid var(--button-border-color);
+  border-radius: 5px;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 1rem;
+  /* border: 1px solid var(--button-border-color); */
+  padding: 1rem;
+}
+
+section h2 {
+  text-align: center;
+  margin-block: 0.5rem 0;
+}
+
+section p {
+  margin-block: 0;
+}
+
+section .user-repos {
+  align-self: start;
+}
+
+section .repositories {
+  margin-block: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.repo-item {
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 200px;
+  border: 1px solid var(--button-border-color);
+  border-radius: 5px;
+}
+
+.repo-item-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.repo-item-header a {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+}
+
+.repo-item-header a:hover {
+  text-decoration: underline;
+}
+
+.repo-item-header span {
+  text-transform: capitalize;
+  font-size: 14px;
+  align-self: flex-end;
+  background-color: var(--layer-color);
+  color: white;
+  border-radius: 5px;
+  padding: 3px;
+  font-weight: bold;
+}
+
+.languages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.language-item {
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: var(--layer-color);
+  color: white;
+  padding: 0.1rem 0.25rem;
+  font-weight: bold;
+}
+
+.errors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+}
