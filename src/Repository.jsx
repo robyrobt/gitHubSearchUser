@@ -26,6 +26,16 @@ function Repository({ repository, userName, errors }) {
         <a href={repository.html_url} target='_blank'>{repository.name}</a>
         <span>{repository.visibility}</span>
       </div>
+      <p>Languages</p>
+      <div className='languages'>
+        {Object.keys(languages).map(item => {
+          return (
+            <span key={item} className='language-item'>
+              {item}
+            </span>
+          )
+        })}
+      </div>
     </div>
   )
 }
