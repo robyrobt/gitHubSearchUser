@@ -49,7 +49,7 @@ function App() {
   }
 
   const fetchUserRepositories = async () => {
-    if (errors) return;
+    if (!errors) return;
 
     try {
       const response = await axiosService.get(`/users/${userName}/repos`);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-export const BASE_URL = 'https://api.github.com';
+export const BASE_URL = 'http://api.github.com';
 export const headers = {
   "Accept": "application/vnd.github+json",
   "Content-Type": "application/json",
