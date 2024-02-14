@@ -49,7 +49,7 @@ function App() {
   }
 
   const fetchUserRepositories = async () => {
-    if (!errors) return;
+    if (!user) return;
 
     try {
       const response = await axiosService.get(`/users/${userName}/repos`);
@@ -65,11 +65,11 @@ function App() {
   const handleClick = (e) => {
     e.preventDefault();
 
-    const waitUser = async () => { await fetchUser() };
-    const waitUserRepositories = async () => { await fetchUserRepositories(); }
+    // const waitUser = async () => { await fetchUser() };
+    // const waitUserRepositories = async () => { await fetchUserRepositories(); }
 
-    waitUser();
-    waitUserRepositories();
+    fetchUser();
+    fetchUserRepositories();
   }
 
   const handlePressKey = (e) => {
